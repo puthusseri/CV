@@ -1,143 +1,152 @@
 
-%% If you are using \orcid or academicons
-%% icons, make sure you have the academicons
-%% option here, and compile with XeLaTeX
-%% or LuaLaTeX.
-% \documentclass[10pt,a4paper,academicons]{altacv}
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
 
-%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
-% \documentclass[10pt,a4paper,normalphoto]{altacv}
+%% AltaCV uses the fontawesome5 package.
+%% See http://texdoc.net/pkg/fontawesome5 for full list of symbols.
 
-\documentclass[10pt,a4paper,ragged2e]{altacv}
-
-%% AltaCV uses the fontawesome and academicon fonts
-%% and packages.
-%% See texdoc.net/pkg/fontawecome and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
-\usepackage{hyperref}
 % Change the page layout if you need to
-\geometry{left=2cm,right=10cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1.25cm,bottom=1.25cm}
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1cm}
 
-% Change the font if you want to, depending on whether
-% you're using pdflatex or xelatex/lualatex
+\usepackage{paracol}
 \ifxetexorluatex
   % If using xelatex or lualatex:
-  \setmainfont{Carlito}
+  \setmainfont{Lato}
 \else
   % If using pdflatex:
-  \usepackage[utf8]{inputenc}
-  \usepackage[T1]{fontenc}
   \usepackage[default]{lato}
 \fi
 
 % Change the colours if you want to
-\definecolor{VividPurple}{HTML}{000000}
+\definecolor{VividPurple}{HTML}{3E0097}
 \definecolor{SlateGrey}{HTML}{2E2E2E}
-\definecolor{LightGrey}{HTML}{2E2E2E}
-\colorlet{heading}{VividPurple}
-\colorlet{accent}{VividPurple}
-\colorlet{emphasis}{SlateGrey}
+\definecolor{LightGrey}{HTML}{666666}
+% \colorlet{name}{black}
+% \colorlet{tagline}{PastelRed}
+\colorlet{heading}{black}
+\colorlet{headingrule}{black}
+% \colorlet{subheading}{PastelRed}
+\colorlet{accent}{black}
+\colorlet{emphasis}{black}
 \colorlet{body}{LightGrey}
+
+% Change some fonts, if necessary
+% \renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+% \renewcommand{\personalinfofont}{\footnotesize}
+% \renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+% \renewcommand{\cvsubsectionfont}{\large\bfseries}
 
 % Change the bullets for itemize and rating marker
 % for \cvskill if you want to
 \renewcommand{\itemmarker}{{\small\textbullet}}
 \renewcommand{\ratingmarker}{\faCircle}
 
-%% sample.bib contains your publications
-\addbibresource{sample.bib}
+%% Use (and optionally edit if necessary) this .tex if you
+%% want to use an author-year reference style like APA(6)
+%% for your publication list
+% \input{pubs-authoryear}
+
+%% Use (and optionally edit if necessary) this .tex if you
+%% want an originally numerical reference style like IEEE
+%% for your publication list
+\input{pubs-num}
+
 
 \begin{document}
 \name{Vyshak Puthusseri}
-% \tagline{Masters in Computer Applicaions}
-
-\photo{3.3cm}{profile.jpg}
+\tagline{Software Engineer}
+\photoR{2.5cm}{me}
 \personalinfo{%
-  % Not all of these are required!
-  % You can add your own with \printinfo{symbol}{detail}
-  \href{mailto:vyshakputhusseri@gmail.com}{\email{vyshakputhusseri@gmail.com}}
-  \phone{7560817388}
-%  \mailaddress{Address, Street, 00000 County}
-%   \location{Shanghai, China}
-\href{https://puthusseri.github.io/}{
- \homepage{https://puthusseri.github.io/}}
-%  \twitter{@puthusseri}
-  \href{https://www.linkedin.com/in/vyshakputhusseri}{ \linkedin{linkedin.com/in/vyshakputhusseri}}
-  \href{https://github.com/puthusseri}{
-   \github{github.com/puthusseri}} 
+    \email{vyshakputhusseri@gmail.com}
+    \phone{7560817388}
+    \homepage{puthusseri.github.io}
+    \linkedin{linkedin.com/in/vyshakputhusseri}
+    \github{github.com/puthusseri}
+    \href{https://leetcode.com/puthusseri/}{leetcode.com/puthusseri/} 
 }
-
-%% Make the header extend all the way to the right, if you want.
-\begin{fullwidth}
 \makecvheader
-\end{fullwidth}
-
-%% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
 \AtBeginEnvironment{itemize}{\small}
-\cvsection[page1sidebar]{Education}
-\begin{education}
-\cvevent{College of Engineering Trivandrum}{Masters in Computer Applications}{ Aug 2017 -- July 2020}{Kerala, IN}
-\begin{itemize}
-\item Class topper with CGPA: 8.77/10.0\\
-\end{itemize}
-\end{education}
 
-% \divider
-\cvevent{Mahatma Gandhi College Iritty}{Bachelor in Computer Science}{ Aug 2014 -- March 2017}{}
-Percentage : 84.72% \\
+%% Set the left/right column width ratio to 5:5
+\columnratio{0.4}
 
-\cvevent{Mattannur HSS}{Higher Secondary Education}{ June 2012 -- March 2014}{}
-Percentage : 95.75% 
-\\
+% Start a 2-column paracol. Both the left and right columns will automatically
+% break across pages if things get too long.
+\begin{paracol}{2}
+
+\cvsection{Education}
+    \cveducation{Master of Computer Application}{KTU : College of Engineering Trivandrum}{ Aug 2017 -- July 2020}{}{Class topper with CGPA: 8.77/10.0}
+    \divider
+    \cveducation{B.S.\ in Computer Science}{Kannur University : MG College}{ Aug 2014 -- March 2017}{}{Percentage : 84.72}
+    \divider
+    \cveducation{Higher Secondary Education}{Kerala HSE : Mattannur HSS}{ June 2012 -- March 2014}{}{Percentage : 95.75}
+
 \cvsection{Certifications}
+\certification{Neo4j Certified Professional}{https://graphacademy.neo4j.com/u/d146573b-b65d-4496-8eb3-234243338375/neo4j-certification#.YwxMR7O9yN4.link}
+\certification{DeepLearning.AI: Deep Learning Specialization from Coursera}{https://coursera.org/share/3f919b62c5eab0173e07aef82724e349}
+\certification{Deep Learning Nanodegree from Udacity}{https://confirm.udacity.com/3CCQ7C5L}
+\certification{Machine Learning on NPTEL}{https://nptel.ac.in/noc/E_Certificate/noc19-cs35/NPTEL19CS35S62130183191139448.jpg}
+\certification{Programming, Data Structures and Algorithms in Python on
+NPTEL}{http://nptel.ac.in/noc/E_Certificate/linkedin/noc16-cs11/NPTEL16CS1125450017.jpg}
+\certification{PC Hardware and Networking, ASAP Govt.of Kerala}{}
 
-\begin{itemize}
-    \item DeepLearning.AI Deep Learning Specialization from Coursera
-    \smallskip 
-    \item Deep Learning Nanodegree from Udacity
-    \smallskip  
-    \item Machine Learning on NPTEL
-    \smallskip  
-    \item Introduction to parallel Programming in Open MP on NPTEL
-    \smallskip
-    \item Programming, Data Structures and Algorithms in Python on NPTEL
-    \smallskip
-    \item PC Hardware and Networking, ASAP Govt.of Kerala
-\end{itemize}
 \cvsection{Courses}
-\course{Capstone: Retrieving, Processing, and Visualizing Data with Python by University
-of Michigan}{Coursera}{2020}
-\course{Capstone: Retrieving, Processing, and Visualizing Data with Python by University
-of Michigan}{Coursera}{2020}
-\course{Using Python to Access Web Data by University of Michigan}{Coursera}{2020}
-\course{Using Databases with Python by University of Michigan}{Coursera}{2020}
-\course{Python Data Structures by University of Michigan}{Coursera}{2020}
-\course{Programming for Everybody Getting Started with Python by University of Michigan}{Coursera}{2020}
-\course{Intro to Deep Learning with PyTorch}{Udacity}{2019}
+\course{Python for Everybody by University of Michigan}{Coursera}{2020}
+\course{Crash Course on Python by Google}{Coursera}{2020}
 \course{Version Control with Git}{Udacity}{2018}
+\switchcolumn
+\cvsection{TECHNICAL SKILLS}
+\cvtag{Python}
+\cvtag{Java}
+\cvtag{SQL}
+\cvtag{Kafka}
+\cvtag{Redis}
+\cvtag{neo4j}\\
+\medskip\medskip\normalsize
+
+\cvsection{Experience}
+
+\cvevent{Member Technical Staff}{Zoho}{March 2021 -- Ongoing}{Pathanamthitta, IN}
+\begin{itemize}
+\item Build analytics dashboard for providing api usage details
+\item Adoption of the new EU SCC changes in 2022 into ZohoDesk
+\item Firewall to protect from various security attacks
+\item Red team activities
+\end{itemize}
+
+\cvsection{Projects}
+
+\project{ZohoDesk}{2021}{https://desk.zoho.com}
+\begin{itemize}
+\item\justify Ticketing software used for customer support.
+\end{itemize}
+\smallskip
+\divider
+
+\project{Automatic Multiple Choice Questions Generator}{2020}{https://google.com}
+\begin{itemize}
+\item\justify English reading comprehension MCQs are generated using the deep-learning techniques
+for NLP tasks.
+\item\justify Mainly focused on generating the distractors. Used LSTM network.
+\end{itemize}
+\smallskip
+\divider
+
+\project{Solution for Customer Loyalty problem using Blockchain}{2019}{}
+\begin{itemize}
+\item\justify Had used ethereum blockchain network to create the smart contract.
+\end{itemize}
+\smallskip
 
 
-\clearpage
-
-\cvsection[page2SideBar]{Achievements}
+\cvsection{Achievements}
 \cvachievement{\faGraduationCap}{}{Class topper of Post Graduation}
-%\divider
-\cvachievement{\faInstitution}{}{Qualified for UGC NET(Assistant Professor in Computer Science) in June 2020}
+\cvachievement{\faUniversity}{}{Qualified for UGC NET(Assistant Professor in Computer Science) in June 2020}
 
-\cvachievement{\faInstitution}{}{Qualified for UGC NET(Assistant Professor in Computer Science) in June 2019}
-
+\cvachievement{\faUniversity}{}{Qualified for UGC NET(Assistant Professor in Computer Science) in June 2019}
 \cvachievement{\faTrophy}{}{Won Second prize for Grand Hackathon conducted by Rajagiri College Cochin}
-%\divider
 \cvachievement{\faTrophy}{}{Won First prize for CURATHON’19, A 24 Hour Medical Hackathon}
-%\divider
-\cvachievement{\faTrophy}{}{Selected as one of 200 participants for the Udacity Deep Learning nanodegree scholarship from Facebook developer circle in 2019 based on the involvement in the community}
-%\divider
 \cvachievement{\faGraduationCap}{}{\textbf{Finalist for the FACEBOOK VR AWARENESS PROGRAM by SV.CO in 2019}}
-%\divider
-\cvachievement{\faGraduationCap}{}{\textbf{Open source : }One of my pull request regarding an article about clustering algorithms was merged in the freecodecamp.org}
-%\divider
-\cvachievement{\faDollar}{}{Participated and won prize in various IT Fest}
 
-% achievements
-\nocite{*}
+\end{paracol}
 
 \end{document}
